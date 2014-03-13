@@ -1,0 +1,52 @@
+<script language="JavaScript" 
+   type="text/JavaScript">
+function changePage(newLoc)
+ {
+   nextPage = newLoc.options[newLoc.selectedIndex].value
+		
+   if (nextPage != "")
+   {
+      document.location.href = nextPage;
+   }
+ }
+
+function clearSearch()
+{
+		// Reload this page
+		url = "http://oracle.cland.com/dsscollaborate/select.php";
+		location.href=url;
+}
+
+</script>
+</head>
+<body>
+<div id="mainwrap">
+<div id="contentarea" class="clearfix">
+	<p>&nbsp;</p>
+	<form method="POST" name="SelectAndGo" >
+		    <label>SELECT AND GO:  &nbsp;&nbsp;</label>
+			<select name="selectedPage" 
+				onChange="changePage(this.form.selectedPage)">
+				<option value = "">Make a Selection</option>
+				<option value = "http://www.yahoo.com">Yahoo</option>
+                <option value = "http://www.nytimes.com">New York Times</option>
+                <option value = "http://www.amazon.com">Amazon.com</option>
+          </select>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+		    <label>SELECT AND PUSH THE GO BUTTON:  &nbsp;&nbsp;</label>
+			<select name="selectAndPushGo" >
+				<option value = "http://www.yahoo.com">Yahoo</option>
+                <option value = "http://www.nytimes.com">New York Times</option>
+                <option value = "http://www.amazon.com">Amazon.com</option>
+          </select>
+	        <input type = "button" value = "Go Now" onClick="changePage(this.form.selectAndPushGo)" />
+	        <input type="button" name="clear" value="Clear" id="clearBtn" onClick="clearSearch();" />
+		</form> 
+
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+  </div><!--end contentarea -->
+  </div>
+<!--end mainwrap-->
