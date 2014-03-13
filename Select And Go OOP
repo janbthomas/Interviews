@@ -1,4 +1,3 @@
-
 <script language="JavaScript" type="text/JavaScript">
 function myEventHandler(element, type, handler) {
 	this.element = element;
