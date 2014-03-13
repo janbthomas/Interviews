@@ -1,0 +1,73 @@
+<div id="mainwrap">
+<div id="contentarea" class="clearfix">
+	<p>&nbsp;</p>
+	<form method="POST" name="SelectAndGo" >
+		    <label>SELECT AND GO:  </label>
+			<select name="selectedPage" id="selectedPage">
+				<option value = "">Make a Selection</option>
+				<option value = "http://www.yahoo.com">Yahoo</option>
+                <option value = "http://www.nytimes.com">New York Times</option>
+                <option value = "http://www.amazon.com">Amazon.com</option>
+          </select>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+		    <label>SELECT AND PUSH THE GO BUTTON:  </label>
+			<select name="selectAndPushGo" id="selectedPagebyBtn" >
+				<option value = "http://www.yahoo.com">Yahoo</option>
+                <option value = "http://www.nytimes.com">New York Times</option>
+                <option value = "http://www.amazon.com">Amazon.com</option>
+          </select>
+	        <input type = "button" value = "Go Now" id="selectedPageBtn"  />
+		</form> 
+
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+  </div><!--end contentarea -->
+</div>
+<!--end mainwrap-->
+
+<script language="JavaScript" type="text/JavaScript">
+
+var selectCtl = document.getElementById("selectedPage"); 
+var selectBtn = document.getElementById("selectedPageBtn"); 
+AttachEvent(selectCtl, "change", SelectAndGo);
+AttachEvent(selectBtn, "click", SelectAndGoBtn);    
+
+function AttachEvent(element, type, handler) { 	
+if (element.addEventListener) 
+	element.addEventListener(type, handler, false); 	
+else element.attachEvent("on"+type, handler); 
+} 
+ 
+function goNextPage(selectObj)
+{
+   nextPage = selectObj.options[selectObj.selectedIndex].value;
+		
+   if (nextPage != "") {
+      document.location.href = nextPage;
+   }
+}
+
+function SelectAndGo(e) { 
+// Would use this but for IE8 and below this is a ptr to window object
+    var goNext=goNextPage;
+	
+	e = e || window.event;
+	var target = e.target || e.srcElement;
+		
+	goNext(target);
+} 
+
+function SelectAndGoBtn(e) { 
+// Would use this but for IE8 and below this is a ptr to window object
+    var goNext=goNextPage;
+	
+	e = e || window.event;
+	var target = e.target || e.srcElement;
+		
+	var selectCtl2 = document.getElementById("selectedPagebyBtn");
+	goNext(selectCtl2);
+} 
+
+</script>
