@@ -1,49 +1,24 @@
-<div id="mainwrap">
-
-<div id="contentarea" class="clearfix">
-	<p>&nbsp;</p>
-	<form method="POST" name="SelectAndGo" >
-		    <label>SELECT AND GO:  </label>
-			<select name="selectedPage" id="selectedPage">
-				<option value = "">Make a Selection</option>
-				<option value = "http://www.yahoo.com">Yahoo</option>
-                <option value = "http://www.nytimes.com">New York Times</option>
-                <option value = "http://www.amazon.com">Amazon.com</option>
-          </select>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-		    <label>SELECT AND PUSH THE GO BUTTON:  </label>
-			<select name="selectAndPushGo" id="selectedPagebyBtn" >
-				<option value = "http://www.yahoo.com">Yahoo</option>
-                <option value = "http://www.nytimes.com">New York Times</option>
-                <option value = "http://www.amazon.com">Amazon.com</option>
-          </select>
-	        <input type = "button" value = "Go Now" id="selectedPageBtn"  />
-            <input type="button" name="clear" value="Clear" id="clearBtn" />
-		</form> 
-
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-	<p>&nbsp;</p>
-  </div><!--end contentarea -->
-  </div>
-<!--end mainwrap-->
 
 <script language="JavaScript" type="text/JavaScript">
-var selectCtl = document.getElementById("selectedPage"); 
-var selectBtn = document.getElementById("selectedPageBtn"); 
-var clearBtn = document.getElementById("clearBtn");
- 
-AttachEvent(selectCtl, "change", SelectAndGo);
-AttachEvent(selectBtn, "click", SelectAndGoBtn);    
-AttachEvent(clearBtn, "click", ClearPage);
+function myEventHandler(element, type, handler) {
+	this.element = element;
+	this.type = type;
+	this.handler = handler;
+	this.attach = function AttachEvent(element, type, handler) { 	
+		if (element.addEventListener) 
+			element.addEventListener(type, handler, false); 	
+		else element.attachEvent("on"+type, handler); 
+	} 
+	this.attach(this.element, this.type, this.handler);
+}
 
-function AttachEvent(element, type, handler) { 	
-if (element.addEventListener) 
-	element.addEventListener(type, handler, false); 	
-else element.attachEvent("on"+type, handler); 
-} 
- 
+var selectCtrl, selectBtn, clearBtn;
+function doEvents() {
+	selectCtl = new myEventHandler(document.getElementById("selectedPage"), "change", SelectAndGo); 
+	selectBtn = new myEventHandler(document.getElementById("selectedPageBtn"), "click", SelectAndGoBtn); 
+	clearBtn = new myEventHandler(document.getElementById("clearBtn"), "click", ClearPage);
+}
+
 function goNextPage(selectObj)
 {
    nextPage = selectObj.options[selectObj.selectedIndex].value;
@@ -85,3 +60,35 @@ function ClearPage(e) {
 }
 
 </script>
+
+</head>
+<body onload="doEvents();">
+<div id="mainwrap">
+<div id="contentarea" class="clearfix">
+	<p>&nbsp;</p>
+	<form method="POST" name="SelectAndGo" >
+		    <label>SELECT AND GO:  </label>
+			<select name="selectedPage" id="selectedPage">
+				<option value = "">Make a Selection</option>
+				<option value = "http://www.yahoo.com">Yahoo</option>
+                <option value = "http://www.nytimes.com">New York Times</option>
+                <option value = "http://www.amazon.com">Amazon.com</option>
+          </select>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+		    <label>SELECT AND PUSH THE GO BUTTON:  </label>
+			<select name="selectAndPushGo" id="selectedPagebyBtn" >
+				<option value = "http://www.yahoo.com">Yahoo</option>
+                <option value = "http://www.nytimes.com">New York Times</option>
+                <option value = "http://www.amazon.com">Amazon.com</option>
+          </select>
+	        <input type = "button" value = "Go Now" id="selectedPageBtn"  />
+            <input type="button" name="clear" value="Clear" id="clearBtn" />
+		</form> 
+
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+  </div><!--end contentarea -->
+  </div>
+<!--end mainwrap-->
