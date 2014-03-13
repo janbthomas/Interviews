@@ -1,4 +1,5 @@
 <div id="mainwrap">
+
 <div id="contentarea" class="clearfix">
 	<p>&nbsp;</p>
 	<form method="POST" name="SelectAndGo" >
@@ -18,21 +19,24 @@
                 <option value = "http://www.amazon.com">Amazon.com</option>
           </select>
 	        <input type = "button" value = "Go Now" id="selectedPageBtn"  />
+            <input type="button" name="clear" value="Clear" id="clearBtn" />
 		</form> 
 
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
   </div><!--end contentarea -->
-</div>
+  </div>
 <!--end mainwrap-->
 
 <script language="JavaScript" type="text/JavaScript">
-
 var selectCtl = document.getElementById("selectedPage"); 
 var selectBtn = document.getElementById("selectedPageBtn"); 
+var clearBtn = document.getElementById("clearBtn");
+
 AttachEvent(selectCtl, "change", SelectAndGo);
 AttachEvent(selectBtn, "click", SelectAndGoBtn);    
+AttachEvent(clearBtn, "click", ClearPage);
 
 function AttachEvent(element, type, handler) { 	
 if (element.addEventListener) 
@@ -69,5 +73,15 @@ function SelectAndGoBtn(e) {
 	var selectCtl2 = document.getElementById("selectedPagebyBtn");
 	goNext(selectCtl2);
 } 
+
+function ClearPage(e) {
+// Would use this but for IE8 and below this is a ptr to window object
+
+	e = e || window.event;
+	var target = e.target || e.srcElement;
+
+	// Reload this page
+	window.location.href=window.location.href;
+}
 
 </script>
