@@ -1,0 +1,67 @@
+<script language="JavaScript" type="text/JavaScript">
+$(function() {
+	
+$( "#selectedPage" ).on( "change", function( event ) {
+    console.log( "event object:" );
+	goNextPage( event.target );
+});
+ 
+$( "#clearBtn" ).on( "click", function( event ) {
+    console.log( "event object:" );
+	// Reload this page
+	window.location.href=window.location.href;
+}); 
+
+});	
+function goNextPage(selectObj) {
+   nextPage = selectObj.options[selectObj.selectedIndex].value;
+		
+   if (nextPage != "") {
+      document.location.href = nextPage;
+   }
+}
+
+</script>
+
+</head>
+<body>
+<div id="mainwrap">
+
+<div id="contentarea" class="clearfix">
+	<p>&nbsp;</p>
+	<form method="POST" name="SelectAndGo" >
+		    <label>SELECT AND GO:  </label>
+			<select name="selectedPage" id="selectedPage">
+				<option value = "">Make a Selection</option>
+				<option value = "http://www.yahoo.com">Yahoo</option>
+                <option value = "http://www.nytimes.com">New York Times</option>
+                <option value = "http://www.amazon.com">Amazon.com</option>
+          </select>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+		    <label>SELECT AND PUSH THE GO BUTTON:  </label>
+			<select name="selectAndPushGo" id="selectedPagebyBtn" >
+				<option value = "http://www.yahoo.com">Yahoo</option>
+                <option value = "http://www.nytimes.com">New York Times</option>
+                <option value = "http://www.amazon.com">Amazon.com</option>
+          </select>
+	        <input type = "button" value = "Go Now" id="selectedPageBtn"  />
+            <input type="button" name="clear" value="Clear" id="clearBtn" />
+		</form> 
+
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+  </div><!--end contentarea -->
+  </div>
+<!--end mainwrap-->
+
+<script type="text/javascript">
+$(function () {
+	
+$( "#selectedPageBtn" ).on( "click", function( event ) {	
+	goNextPage( $( "#selectedPagebyBtn" )[0] );
+});
+ 	
+});
+</script>
