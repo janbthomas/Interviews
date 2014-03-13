@@ -33,7 +33,7 @@
 var selectCtl = document.getElementById("selectedPage"); 
 var selectBtn = document.getElementById("selectedPageBtn"); 
 var clearBtn = document.getElementById("clearBtn");
-
+ 
 AttachEvent(selectCtl, "change", SelectAndGo);
 AttachEvent(selectBtn, "click", SelectAndGoBtn);    
 AttachEvent(clearBtn, "click", ClearPage);
