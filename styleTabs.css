@@ -1,0 +1,18 @@
+/* CSS Document */
+div.tab {
+	margin: 15px;
+	padding: 15px;
+}
+
+#tabLinks a {
+	margin: 5px;
+	padding: 5px;
+	display: inline-block;
+	background-color:#F9C;
+}
+
+#tabList li
+{
+list-style: none;
+display: inline;
+}
